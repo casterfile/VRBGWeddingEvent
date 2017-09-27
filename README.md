@@ -8,7 +8,8 @@ Loading-Asset-From-Cloud  </br>
 This application is free of virus or malware </br>
 
 <h3>Software Requirment </h3>
-NodeJS<br/>
+Unity 3D<br/>
+C#<br/>
 
 <h3>Online Application</h3>
 Distribution itch(Web and Desktop): https://goo.gl/Wq1nuD </br>
