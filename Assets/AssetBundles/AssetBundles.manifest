@@ -1,7 +1,7 @@
 ManifestFileVersion: 0
-CRC: 3865675054
+CRC: 3612600095
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: spheresample
+      Name: vrassetstream
       Dependencies: {}
