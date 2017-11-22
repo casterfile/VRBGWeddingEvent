@@ -17,32 +17,103 @@ namespace GoogleVR.GVRDemo {
 	using System.Collections;
 
 	public class SceneController : MonoBehaviour {
-		public GameObject objVideo, objPicture;
+		private  GameObject[] objVideo,objVideoButton;
+		private GameObject BackgroundPicture, BackButton;
+		private float timeMouseDown = 0.0f;
+		private int totalLoop = 0;
+		private string NameAction = "";
+		private int IntAction = -1;
+		public bool mouseDown = false;
 	    void Start() {
-			
+			int ArrayLength = 3;
+			totalLoop = ArrayLength - 1;
+			objVideo = new GameObject[ArrayLength];
+			objVideoButton = new GameObject[ArrayLength];
+			FindAllVideos ();
+
+			BackButton.SetActive (false);
 	    }
 
-		public void ScenePicture() {
-			StartCoroutine(Controller("Picture"));
+		void Update() {
+			if (mouseDown == true) {
+				timeMouseDown += Time.deltaTime;
+				print ("timeMouseDown: "+timeMouseDown);
+				if(timeMouseDown >= 3){
+					if(NameAction == "Video"){
+						StartCoroutine(Controller("Video",IntAction));
+						OnPointerUp ();
+					}else if(NameAction == "BackMain"){
+						StartCoroutine(Controller("BackMain",1));
+						OnPointerUp ();
+					}
+				}
+			}
 		}
 
-		public void SceneVideo() {
-			
-			StartCoroutine(Controller("Video"));
+		public void SceneVideo(int number) {
+			mouseDown = true;
+			NameAction = "Video";
+			IntAction = number;
+//			if(timeMouseDown >= 3){
+//				StartCoroutine(Controller("Video",number));
+//			}
+
 		}
 
-		IEnumerator Controller(string Output)
+		public void SceneBackMain() {
+			mouseDown = true;
+			NameAction = "BackMain";
+//			if(timeMouseDown >= 3){
+//				StartCoroutine(Controller("BackMain",1));
+//			}
+
+		}
+
+		public void OnPointerUp(){
+			mouseDown = false;
+			timeMouseDown = 0;
+		}
+
+		IEnumerator Controller(string Output,int OutputNumber)
 		{
-			yield return new WaitForSeconds(1.5f);
+			HideAllVideos ();
 			if(Output == "Video"){
-				objVideo.SetActive (true);
-				objPicture.SetActive (false);
+				objVideo[OutputNumber].SetActive (true);
+				BackButton.SetActive (true);
+				BackgroundPicture.SetActive (false);
 			}
 
-			if(Output == "Picture"){
-				objVideo.SetActive (false);
-				objPicture.SetActive (true);
+			if(Output == "BackMain"){
+				ShowAllVideosButtons ();
+				BackButton.SetActive (false);
+				BackgroundPicture.SetActive (true);
+			}
+			yield return new WaitForSeconds(1.5f);
+
+		}
+
+		private void HideAllVideos(){
+			for (int x = 0; x <= totalLoop; x++) {
+				objVideo [x].SetActive(false);
+				objVideoButton [x].SetActive(false);
 			}
 		}
+
+		private void ShowAllVideosButtons(){
+			for (int x = 0; x <= totalLoop; x++) {
+				objVideoButton [x].SetActive(true);
+			}
+		}
+
+
+		private void FindAllVideos(){
+			for (int x = 0; x <= totalLoop; x++) {
+				objVideo[x] =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/VideoList/Videos ("+x+")");
+				BackgroundPicture =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/Photo");
+				BackButton =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/SceneController/BackButton");
+				objVideoButton[x] =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/SceneController/VideoPanel ("+x+")");
+			}
+		}
+
   }
 }
