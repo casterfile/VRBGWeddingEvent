@@ -19,10 +19,10 @@ namespace GoogleVR.GVRDemo {
 	using UnityEngine.UI;
 
 	public class SceneController : MonoBehaviour {
-		private  GameObject[] objVideo,objVideoButton;
+		public  GameObject[] objVideo,objVideoButton;
 		private  VideoPlayer[] VideoPlayerControl;
 		private string[] VideoURL;
-		private GameObject BackgroundPicture, BackButton,VideoPanelContent;
+		private GameObject BackgroundPicture, BackButton,VideoPanelContent,ButtonMoveUp,ButtonMoveDown;
 		private float timeMouseDown = 0.0f;
 		private int totalLoop = 0;
 		private string NameAction = "";
@@ -33,7 +33,7 @@ namespace GoogleVR.GVRDemo {
 
 		public bool mouseDown = false;
 	    void Start() {
-			int ArrayLength = 3;
+			int ArrayLength = 9;
 			totalLoop = ArrayLength - 1;
 			objVideo = new GameObject[ArrayLength];
 			objVideoButton = new GameObject[ArrayLength];
@@ -43,6 +43,9 @@ namespace GoogleVR.GVRDemo {
 			URLSetting ();
 
 			BackButton.SetActive (false);
+			ButtonMoveDown.SetActive (false);
+			ButtonMoveUp.SetActive (true);
+			ShowLimitedVideos (IntContentMove);
 	    }
 
 		void Update() {
@@ -111,17 +114,24 @@ namespace GoogleVR.GVRDemo {
 				BackButton.SetActive (false);
 				VideoPanelContent.SetActive (true);
 				BackgroundPicture.SetActive (true);
+				ShowLimitedVideos (IntContentMove);
 			}
 
 			if(Output == "ContentMoveUp"){
 				if(IntContentMove == 0 ){
 					IntContentMove = 1;
+					ShowLimitedVideos (IntContentMove);
 					ContentVideos.anchoredPosition = new Vector2(0.0f, 220.0f);
+					ButtonMoveDown.SetActive (true);
+					ButtonMoveUp.SetActive (true);
 				}
 				else if(IntContentMove == 1){
 					IntContentMove = 2;
+					ShowLimitedVideos (IntContentMove);
 					ContentVideos.anchoredPosition = new Vector2(0.0f, 430.0f);
-					OnPointerUp ();
+					OnPointerUp ();// Put this at the end
+					ButtonMoveDown.SetActive (true);
+					ButtonMoveUp.SetActive (false);
 				}
 
 			}
@@ -129,18 +139,49 @@ namespace GoogleVR.GVRDemo {
 			else if(Output == "ContentMoveDown"){
 				if(IntContentMove == 1 ){
 					IntContentMove = 0;
+					ShowLimitedVideos (IntContentMove);
 					ContentVideos.anchoredPosition = new Vector2(0.0f, 0.0f);
-					OnPointerUp ();
+					OnPointerUp ();// Put this at the start
+					ButtonMoveDown.SetActive (false);
+					ButtonMoveUp.SetActive (true);
 				}
 				else if(IntContentMove == 2){
 					IntContentMove = 1;
+					ShowLimitedVideos (IntContentMove);
 					ContentVideos.anchoredPosition = new Vector2(0.0f, 220.0f);
+					ButtonMoveDown.SetActive (true);
+					ButtonMoveUp.SetActive (true);
 				}
 			}
 
 			print ("IntContentMove: "+ IntContentMove);
 
 		}
+
+		private void ShowLimitedVideos(int count){
+			for (int x = 0; x <= totalLoop; x++) {
+				objVideoButton [x].SetActive(false);
+			}
+
+			if(count == 0){
+				objVideoButton [0].SetActive(true);
+				objVideoButton [1].SetActive(true);
+				objVideoButton [2].SetActive(true);
+			}
+
+			else if(count == 1){
+				objVideoButton [3].SetActive(true);
+				objVideoButton [4].SetActive(true);
+				objVideoButton [5].SetActive(true);
+			}
+
+			else if(count == 2){
+				objVideoButton [6].SetActive(true);
+				objVideoButton [7].SetActive(true);
+				objVideoButton [8].SetActive(true);
+			}
+		}
+
 
 		private void HideAllVideos(){
 			for (int x = 0; x <= totalLoop; x++) {
@@ -165,6 +206,8 @@ namespace GoogleVR.GVRDemo {
 				BackgroundPicture =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/Photo");
 				BackButton =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/SceneController/BackButton");
 				VideoPanelContent = GameObject.Find ("VideoPanelContent");
+				ButtonMoveUp = GameObject.Find ("ButtonMoveUp");
+				ButtonMoveDown = GameObject.Find ("ButtonMoveDown");
 			}
 		}
 
@@ -174,6 +217,9 @@ namespace GoogleVR.GVRDemo {
 			VideoURL[0] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
 			VideoURL[1] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
 			VideoURL[2] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+			VideoURL[3] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+			VideoURL[4] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+			VideoURL[5] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
 
 			VideoPlayerControl [0].source = VideoSource.Url;
 			VideoPlayerControl [0].url = VideoURL[0];
@@ -183,6 +229,15 @@ namespace GoogleVR.GVRDemo {
 
 			VideoPlayerControl [2].source = VideoSource.Url;
 			VideoPlayerControl [2].url = VideoURL[2];
+
+			VideoPlayerControl [3].source = VideoSource.Url;
+			VideoPlayerControl [3].url = VideoURL[3];
+
+			VideoPlayerControl [4].source = VideoSource.Url;
+			VideoPlayerControl [4].url = VideoURL[4];
+
+			VideoPlayerControl [5].source = VideoSource.Url;
+			VideoPlayerControl [5].url = VideoURL[5];
 		}
 
   }
