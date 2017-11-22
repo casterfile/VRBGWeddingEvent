@@ -52,7 +52,7 @@ namespace GoogleVR.GVRDemo {
 			if (mouseDown == true) {
 				timeMouseDown += Time.deltaTime;
 //				print ("timeMouseDown: "+timeMouseDown);
-				if(timeMouseDown >= 3){
+				if(timeMouseDown >= 2){
 					if(NameAction == "Video"){
 						Controller("Video",IntAction);
 						OnPointerUp ();
@@ -220,24 +220,16 @@ namespace GoogleVR.GVRDemo {
 			VideoURL[3] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
 			VideoURL[4] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
 			VideoURL[5] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+			VideoURL[6] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+			VideoURL[7] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+			VideoURL[8] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
 
-			VideoPlayerControl [0].source = VideoSource.Url;
-			VideoPlayerControl [0].url = VideoURL[0];
 
-			VideoPlayerControl [1].source = VideoSource.Url;
-			VideoPlayerControl [1].url = VideoURL[1];
 
-			VideoPlayerControl [2].source = VideoSource.Url;
-			VideoPlayerControl [2].url = VideoURL[2];
-
-			VideoPlayerControl [3].source = VideoSource.Url;
-			VideoPlayerControl [3].url = VideoURL[3];
-
-			VideoPlayerControl [4].source = VideoSource.Url;
-			VideoPlayerControl [4].url = VideoURL[4];
-
-			VideoPlayerControl [5].source = VideoSource.Url;
-			VideoPlayerControl [5].url = VideoURL[5];
+			for (int x = 0; x <= totalLoop; x++) {
+				VideoPlayerControl [x].source = VideoSource.Url;
+				VideoPlayerControl [x].url = VideoURL[x];
+			}
 		}
 
   }
