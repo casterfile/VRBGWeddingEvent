@@ -30,8 +30,8 @@ namespace GoogleVR.GVRDemo {
 		private int IntAction = -1;
 
 		public RectTransform ContentVideos;
-
 		public bool mouseDown = false;
+
 	    void Start() {
 			int ArrayLength = 9;
 			totalLoop = ArrayLength - 1;
@@ -74,7 +74,6 @@ namespace GoogleVR.GVRDemo {
 			mouseDown = true;
 			NameAction = "Video";
 			IntAction = number;
-
 		}
 
 		public void SceneBackMain() {
@@ -202,35 +201,36 @@ namespace GoogleVR.GVRDemo {
 				objVideo[x] =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/VideoList/Videos ("+x+")");
 				VideoPlayerControl[x] =  objVideo[x].GetComponent<VideoPlayer>();
 				objVideoButton[x] =  GameObject.Find("VideoPanel ("+x+")");
-
-				BackgroundPicture =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/Photo");
-				BackButton =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/SceneController/BackButton");
-				VideoPanelContent = GameObject.Find ("VideoPanelContent");
-				ButtonMoveUp = GameObject.Find ("ButtonMoveUp");
-				ButtonMoveDown = GameObject.Find ("ButtonMoveDown");
 			}
+
+			BackgroundPicture =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/Photo");
+			BackButton =  GameObject.Find("VRAssetStream/GamePlayAsset/VRGame/SceneController/BackButton");
+			VideoPanelContent = GameObject.Find ("VideoPanelContent");
+			ButtonMoveUp = GameObject.Find ("ButtonMoveUp");
+			ButtonMoveDown = GameObject.Find ("ButtonMoveDown");
 		}
 
 
 
 		void URLSetting(){
-			VideoURL[0] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
-			VideoURL[1] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
-			VideoURL[2] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
-			VideoURL[3] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
-			VideoURL[4] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
-			VideoURL[5] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
-			VideoURL[6] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
-			VideoURL[7] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
-			VideoURL[8] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+//			VideoURL[0] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+//			VideoURL[1] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+//			VideoURL[2] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+//			VideoURL[3] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+//			VideoURL[4] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+//			VideoURL[5] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+//			VideoURL[6] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+//			VideoURL[7] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
+//			VideoURL[8] = "https://wptest.bgbridalgallery.com.ph/wp-content/uploads/2017/10/Sample-Video.mp4";
 
 
-
-			for (int x = 0; x <= totalLoop; x++) {
-				VideoPlayerControl [x].source = VideoSource.Url;
-				VideoPlayerControl [x].url = VideoURL[x];
-			}
+//
+//			for (int x = 0; x <= totalLoop; x++) {
+//				VideoPlayerControl [x].source = VideoSource.Url;
+//				VideoPlayerControl [x].url = VideoURL[x];
+//			}
 		}
 
   }
 }
+
