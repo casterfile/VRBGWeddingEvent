@@ -1,9 +1,9 @@
-# VR Streamming
+# VR Wedding
 Developer: Anthony A. Castor
 
 This Source does not give any warranty please use at your own risk </br>
 
-VR Streamming  </br>
+VR Wedding  </br>
 
 Streaming the Game. this is a prove of concept the idea here is we can update the app from a SERVER then the Game is updated to all the user without going to APPSTORE or GOOGLE PLAY.</br>
 
